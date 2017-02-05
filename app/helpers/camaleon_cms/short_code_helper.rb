@@ -184,11 +184,8 @@ module CamaleonCms::ShortCodeHelper
     res = ""
     object = attrs["object"].downcase || "post"
     attr = attrs["attr"] || "title"
-    if (args[:owner].present? && object == args[:owner].class.name.parseCamaClass.downcase) || !attrs["object"].present?
-      model = args[:owner]
-    else
-      model = cama_shortcode_model_parser(object, attrs) || args[:owner]
-    end
+    
+    model = cama_shortcode_model_parser(object, attrs) || args[:owner]
     return res unless model.present?
     
     if attrs["field"].present? # model custom fields
